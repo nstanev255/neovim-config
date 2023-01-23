@@ -6,7 +6,7 @@
 :set softtabstop=4
 :set mouse=a
 
-call plug#begin()
+call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/vim-syntastic/syntastic'
@@ -15,6 +15,9 @@ Plug 'hrsh7th/nvim-compe'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'Pocco81/auto-save.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
 
@@ -46,3 +49,5 @@ luafile ~/.config/nvim/lua/compe-config.lua
 luafile ~/.config/nvim/lua/rust-ls.lua
 luafile ~/.config/nvim/lua/toggleterm-config.lua
 luafile ~/.config/nvim/lua/autosave-config.lua
+luafile ~/.config/nvim/lua/gitsigns-config.lua
+luafile ~/.config/nvim/lua/lualine-config.lua
