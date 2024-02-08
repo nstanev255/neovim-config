@@ -1,3 +1,22 @@
+local defaults = {
+    -- ... rest
+    vimgrep_arguments = {
+        'rg',
+        '--color=never',
+        '--no-heading',
+        '--with-filename',
+        '--line-number',
+        '--column',
+        '--smart-case',
+        '--hidden',
+    },
+}
+
+require('telescope').setup{
+  defaults = defaults
+}
+
+
 local builtin = require('telescope.builtin')
 
 

@@ -6,16 +6,14 @@
 :set smarttab
 :set softtabstop=4
 :set mouse=a
+:set clipboard=unnamedplus
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/vim-syntastic/syntastic'
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/nvim-compe'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 Plug 'Pocco81/auto-save.nvim'
-Plug 'lewis6991/gitsigns.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', {'tag': '0.1.1'}
@@ -24,6 +22,15 @@ Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'nvim-tree/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'roxma/nvim-cm-php-language-server',  {'do': 'composer install && composer run-script parse-stubs'}
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'terrortylor/nvim-comment'
+Plug 'tpope/vim-fugitive'
+Plug 'williamboman/mason.nvim'
 
 call plug#end()
 
@@ -43,7 +50,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
 colorscheme tokyonight-night
 
@@ -154,22 +160,13 @@ let g:mkdp_theme = 'dark'
 
 set encoding=utf8
 
-
-nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> <C-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> <C-n> <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-nnoremap <silent> <C-p> <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+autocmd BufWritePre <buffer> lua vim.lsp.buf.format()
 
 
-luafile ~/.config/nvim/lua/compe-config.lua
-luafile ~/.config/nvim/lua/rust-ls.lua
 luafile ~/.config/nvim/lua/toggleterm-config.lua
 luafile ~/.config/nvim/lua/autosave-config.lua
-luafile ~/.config/nvim/lua/gitsigns-config.lua
 luafile ~/.config/nvim/lua/lualine-config.lua
 luafile ~/.config/nvim/lua/telescope-config.lua
-luafile ~/.config/nvim/lua/typescript-ls.lua
+luafile ~/.config/nvim/lua/coc.lua
+luafile ~/.config/nvim/lua/nvim-comment.lua
+luafile ~/.config/nvim/lua/mason-config.lua
